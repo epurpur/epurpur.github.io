@@ -20,11 +20,11 @@ is a column called 'Patient_Da'. This is short for "Patient Data" and shows a co
 of number of patients by zip code. Here is the full code:
 
 
-uri = '/Users/ep9k/Desktop/TestZipCodes/TestZipCodes.shp'
-join_layer = iface.addVectorLayer(uri, 'Patients by Zip Code', 'ogr')
-target_field = 'Patient_Da'
+    uri = '/Users/ep9k/Desktop/TestZipCodes/TestZipCodes.shp'
+    join_layer = iface.addVectorLayer(uri, 'Patients by Zip Code', 'ogr')
+    target_field = 'Patient_Da'
 
-﻿def apply_graduated_symbology():
+    ﻿def apply_graduated_symbology():
     """Creates Symbology for each value in range of values. 
         Values are # of patients per zip code.
         Hard codes min value, max value, symbol (color), and label for each range of 
@@ -51,7 +51,7 @@ target_field = 'Patient_Da'
     
     print(f"Graduated color scheme applied")
 
-apply_graduated_symbology()
+    apply_graduated_symbology()
 
 First, I want to show you what this would look like using the "symbology" tab of the GUI
 in QGIS. This is simple enough to do.
@@ -66,9 +66,9 @@ add the layer to my map. Finally, the target_field object is the 'Patient_Da' co
 the attribute table of my join_layer, which is the sample data set:
 
 
-uri = '/Users/ep9k/Desktop/TestZipCodes/TestZipCodes.shp'
-join_layer = iface.addVectorLayer(uri, 'Patients by Zip Code', 'ogr')
-target_field = 'Patient_Da'
+    uri = '/Users/ep9k/Desktop/TestZipCodes/TestZipCodes.shp'
+    join_layer = iface.addVectorLayer(uri, 'Patients by Zip Code', 'ogr')
+    target_field = 'Patient_Da'
 
 
 Now, I created a function called apply_graduated_symbology() with no arguments. You can 
@@ -116,7 +116,7 @@ again:
     
     print("Graduated color scheme applied")
     
-apply_graduated_symbology()
+    apply_graduated_symbology()
     
     
 I finish with a print statement telling me this function ran and then execute the function
