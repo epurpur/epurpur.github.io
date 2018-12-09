@@ -1,19 +1,12 @@
 I was recently working on a project in QGIS 3 with a member of University of Virginia Health's Oncology
 department. This person wanted to take a set of patient data (after identifying info had
-been removed) and after doing some other stuff, apply a graduated color scheme to the
-results, shading them from light to dark based on intensity. This caused me some head-scratching moments but
-ultimately turned out to be pretty easy to do. I hope this blog post serves as a guide for you do to the same
-using Python for QGIS 3.x.
+been removed) and represent the geographical distribution of those patients by US Zip Code. This workflow involved many steps, one of which was to apply a graduated color scheme to the results, shading them from light to dark based on # of patients in each zip code. I needed to write this in a script using Python for QGIS 3 (QGIS 3.4 in my case). This ultimately turned out to be pretty easy to do. I wrote this post to serve as an example for myself and hopefully to others as I struggled somewhat to piece together working code via examples I found online. I did find some in the usual places including StackOverflow as well as the [PyQGIS Developer's Cookbook](https://docs.qgis.org/testing/en/docs/pyqgis_developer_cookbook/vector.html) and after some head-scratching I got it working. 
 
 [You can find a sample dataset for this project here](https://github.com/epurpur/PyQGIS-Scripts/blob/master/TestZipCodes.zip)
 
 This is a shapefile with a handful of zip codes in Virginia.
 
-After looking around online I found some documentation and examples, but some were for
-older versions of the software. But I did find a nice current example in the [PyQGIS 
-Developer's Cookbook](https://docs.qgis.org/testing/en/docs/pyqgis_developer_cookbook/vector.html).
-
-My code an example is basically a simplified version of the above link with some more 
+My code example is basically a simplified version of the above PyQGIS Cookbook link with some more 
 description of particular features. Anyway, lets start from the top. If you've downloaded
 the sample layer, you have a shapefile with zip codes and in that layer's attribute table
 is a column called 'Patient_Da'. This is short for "Patient Data" and shows a count
@@ -32,24 +25,24 @@ of number of patients by zip code. Here is the full code:
         myRangeList and applies them to join_layer. Color values are hex codes, 
         in a graduated fashion from light pink to black depending on intensity"""
         
-    myRangeList = []
+        myRangeList = []
 
-    symbol = QgsSymbol.defaultSymbol(join_layer.geometryType())     
-    symbol.setColor(QColor("#f5c9c9"))                              
-    myRange = QgsRendererRange(0, 3, symbol, 'Group 1')                   
-    myRangeList.append(myRange)                                     
+        symbol = QgsSymbol.defaultSymbol(join_layer.geometryType())     
+        symbol.setColor(QColor("#f5c9c9"))                              
+        myRange = QgsRendererRange(0, 3, symbol, 'Group 1')                   
+        myRangeList.append(myRange)                                     
 
-    symbol = QgsSymbol.defaultSymbol(join_layer.geometryType())
-    symbol.setColor(QColor("#000000"))
-    myRange = QgsRendererRange(3.1, 6, symbol, 'Group 2')
-    myRangeList.append(myRange)
+        symbol = QgsSymbol.defaultSymbol(join_layer.geometryType())
+        symbol.setColor(QColor("#000000"))
+        myRange = QgsRendererRange(3.1, 6, symbol, 'Group 2')
+        myRangeList.append(myRange)
 
-    myRenderer = QgsGraduatedSymbolRenderer(target_field, myRangeList)  
-    myRenderer.setMode(QgsGraduatedSymbolRenderer.Custom)               
+        myRenderer = QgsGraduatedSymbolRenderer(target_field, myRangeList)  
+        myRenderer.setMode(QgsGraduatedSymbolRenderer.Custom)               
 
-    join_layer.setRenderer(myRenderer)                                  
+        join_layer.setRenderer(myRenderer)                                  
     
-    print(f"Graduated color scheme applied")
+        print(f"Graduated color scheme applied")
 
     apply_graduated_symbology()
 
@@ -109,12 +102,12 @@ join_layer.setRenderer(myRenderer) does this. Take a look at the last few lines 
 again:
 
 
-    myRenderer = QgsGraduatedSymbolRenderer(target_field, myRangeList)  
-    myRenderer.setMode(QgsGraduatedSymbolRenderer.Custom)               
+        myRenderer = QgsGraduatedSymbolRenderer(target_field, myRangeList)  
+        myRenderer.setMode(QgsGraduatedSymbolRenderer.Custom)               
 
-    join_layer.setRenderer(myRenderer)                                  
+        join_layer.setRenderer(myRenderer)                                  
     
-    print("Graduated color scheme applied")
+        print("Graduated color scheme applied")
     
     apply_graduated_symbology()
     
