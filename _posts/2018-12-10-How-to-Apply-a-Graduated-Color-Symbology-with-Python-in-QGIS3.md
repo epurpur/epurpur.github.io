@@ -115,8 +115,5 @@ again:
 I finish with a print statement telling me this function ran and then execute the function
 outside the function block.
 
-So thats really all there is to it. I went through some head scratching moments trying to
-follow documentation and various StackOverflow threads and eventually put the pieces
-together. I wrote this because I really couldn't find a great example resource to use
-so hopefully this serves as that for you.
+And there you have it. That is really all there is to it. As I previously stated, though this is pretty simple functionality I wrote this because I really couldn't find a great example resource to use so hopefully this serves as that for you.
 
