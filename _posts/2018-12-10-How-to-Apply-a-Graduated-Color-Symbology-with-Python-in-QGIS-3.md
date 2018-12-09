@@ -1,7 +1,8 @@
-I was recently working on a project in QGIS 3 with a member of UVA Health's Oncology
+I was recently working on a project in QGIS 3 with a member of University of Virginia Health's Oncology
 department. This person wanted to take a set of patient data (after identifying info had
 been removed) and after doing some other stuff, apply a graduated color scheme to the
-results, shading them from light to dark based on intensity.
+results, shading them from light to dark based on intensity. This caused me some head-scratching moments but
+ultimately turned out to be pretty easy to do. I hope this blog post serves as a guide for you do to the same.
 
 [You can find a sample dataset for this project here](https://github.com/epurpur/PyQGIS-Scripts/blob/master/TestZipCodes.zip)
 
@@ -9,7 +10,7 @@ This is a shapefile with a handful of zip codes in Virginia.
 
 After looking around online I found some documentation and examples, but some were for
 older versions of the software. But I did find a nice current example in the [PyQGIS 
-Developer's Cookbook](https://docs.qgis.org/testing/en/docs/pyqgis_developer_cookbook/vector.html)
+Developer's Cookbook](https://docs.qgis.org/testing/en/docs/pyqgis_developer_cookbook/vector.html).
 
 My code an example is basically a simplified version of the above link with some more 
 description of particular features. Anyway, lets start from the top. If you've downloaded
