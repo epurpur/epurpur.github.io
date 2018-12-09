@@ -3,8 +3,7 @@ department. This person wanted to take a set of patient data (after identifying 
 been removed) and after doing some other stuff, apply a graduated color scheme to the
 results, shading them from light to dark based on intensity.
 
-You can find a sample dataset for this project here:
-https://github.com/epurpur/PyQGIS-Scripts/blob/master/TestZipCodes.zip
+[You can find a sample dataset for this project here](https://github.com/epurpur/PyQGIS-Scripts/blob/master/TestZipCodes.zip)
 
 This is a shapefile with a handful of zip codes in Virginia.
 
