@@ -8,9 +8,8 @@ results, shading them from light to dark based on intensity.
 This is a shapefile with a handful of zip codes in Virginia.
 
 After looking around online I found some documentation and examples, but some were for
-older versions of the software. But I did find a nice current example in the PyQGIS 
-Developer's Cookbook:
-https://docs.qgis.org/testing/en/docs/pyqgis_developer_cookbook/vector.html
+older versions of the software. But I did find a nice current example in the [PyQGIS 
+Developer's Cookbook](https://docs.qgis.org/testing/en/docs/pyqgis_developer_cookbook/vector.html)
 
 My code an example is basically a simplified version of the above link with some more 
 description of particular features. Anyway, lets start from the top. If you've downloaded
