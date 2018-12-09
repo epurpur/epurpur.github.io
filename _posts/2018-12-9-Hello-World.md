@@ -3,7 +3,7 @@ layout: post
 title: You're up and running!
 ---
 
-This is a test blog post
+This is a test blog post!
 
 ![_config.yml]({{ site.baseurl }}/images/config.png)
 
