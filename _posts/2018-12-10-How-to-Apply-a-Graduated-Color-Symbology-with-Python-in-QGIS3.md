@@ -2,7 +2,7 @@ I was recently working on a project in QGIS 3 with a member of University of Vir
 department. This person wanted to take a set of patient data (after identifying info had
 been removed) and represent the geographical distribution of those patients by US Zip Code. This workflow involved many steps, one of which was to apply a graduated color scheme to the results, shading them from light to dark based on # of patients in each zip code. I needed to write this in a script using Python for QGIS 3 (QGIS 3.4 in my case). This ultimately turned out to be pretty easy to do but not before some head scratching moments. I wrote this post to serve as an example for myself and hopefully to others. One major struggle was that many examples were from earlier versions of QGIS (QGIS 2.18 for example). Most of what I did find was from StackOverflow as well as the [PyQGIS Developer's Cookbook](https://docs.qgis.org/testing/en/docs/pyqgis_developer_cookbook/vector.html). Hopefully this serves as a guide for you to apply a graduated symbology to a layer in QGIS 3 using Python. In this example I'm going to use a subset of the data and walk through the steps. 
 
-[You can find a sample dataset for this project here](https://github.com/epurpur/PyQGIS-Scripts/blob/master/TestZipCodes.zip)
+[You can find the sample dataset for here](https://github.com/epurpur/PyQGIS-Scripts/blob/master/TestZipCodes.zip)
 
 This is a shapefile with a handful of zip codes in Virginia.
 
@@ -47,7 +47,7 @@ of number of patients by zip code. Here is the full code:
     apply_graduated_symbology()
 
 First, I want to show you what this would look like using the "symbology" tab of the GUI
-in QGIS. This is simple enough to do.
+in QGIS. If you right-click on the layer and go to "properties" > "symbology" you should see this:
 
 
 
