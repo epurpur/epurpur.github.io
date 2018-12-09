@@ -2,7 +2,8 @@ I was recently working on a project in QGIS 3 with a member of University of Vir
 department. This person wanted to take a set of patient data (after identifying info had
 been removed) and after doing some other stuff, apply a graduated color scheme to the
 results, shading them from light to dark based on intensity. This caused me some head-scratching moments but
-ultimately turned out to be pretty easy to do. I hope this blog post serves as a guide for you do to the same.
+ultimately turned out to be pretty easy to do. I hope this blog post serves as a guide for you do to the same
+using Python for QGIS 3.x.
 
 [You can find a sample dataset for this project here](https://github.com/epurpur/PyQGIS-Scripts/blob/master/TestZipCodes.zip)
 
