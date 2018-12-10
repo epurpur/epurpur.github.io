@@ -13,22 +13,22 @@ However, I wanted to do this programmatically using python.
 The full code looks like this:
 
 
-  uri = '/Users/ep9k/Desktop/TestZipCodes/TestZipCodes.shp'
-  join_layer = iface.addVectorLayer(uri, 'Patients by Zip Code', 'ogr')	#adds layer to map
-  target_field = 'PatCNT'
+	uri = '/Users/ep9k/Desktop/TestZipCodes/TestZipCodes.shp'
+	join_layer = iface.addVectorLayer(uri, 'Patients by Zip Code', 'ogr')	#adds layer to map
+	target_field = 'PatCNT'
 
-  def calculate_attributes():
-      """Calculates values for 'PatCNT' by copying attributes from Patient_Da column
-      and adds them to 'PatCNT' column in US Zip Codes table"""
+	def calculate_attributes():
+	"""Calculates values for 'PatCNT' by copying attributes from Patient_Da column
+	and adds them to 'PatCNT' column in US Zip Codes table"""
 
-      with edit(join_layer):
-          for feature in join_layer.getFeatures():
-              feature.setAttribute(feature.fieldNameIndex('PatCNT'), feature['Patient_Da'])
-              join_layer.updateFeature(feature)
+		with edit(join_layer):
+		for feature in join_layer.getFeatures():
+			feature.setAttribute(feature.fieldNameIndex('PatCNT'), feature['Patient_Da'])
+			join_layer.updateFeature(feature)
       
-      print(f"Attribute calculated for {target_field} field")
+		print(f"Attribute calculated for {target_field} field")
 
-calculate_attributes()
+	calculate_attributes()
 
 
 You can copy and paste this script directly into your QGIS python console and it should
@@ -40,9 +40,9 @@ TestZipCodes layer. The column is titled 'PatCNT' which is short for Patient Cou
 three lines take care of this: 
 
 
-uri = '/Users/ep9k/Desktop/TestZipCodes/TestZipCodes.shp'
-join_layer = iface.addVectorLayer(uri, 'Patients by Zip Code', 'ogr')	#adds layer to map
-target_field = 'PatCNT'
+	uri = '/Users/ep9k/Desktop/TestZipCodes/TestZipCodes.shp'
+	join_layer = iface.addVectorLayer(uri, 'Patients by Zip Code', 'ogr')	#adds layer to map
+	target_field = 'PatCNT'
 
 
 As I stated, make sure you change the uri variable to reflect the actual path to the layer
@@ -52,8 +52,8 @@ the 'PatCNT' field based on the values from the 'Patient_Da' column. Let's take 
 few lines:
 
 
-with edit(join_layer):
-        for feature in join_layer.getFeatures():
+	with edit(join_layer):
+        	for feature in join_layer.getFeatures():
 
 
 First, I open a with block to edit the join_layer. A with block is good to use here
@@ -62,7 +62,7 @@ I start a for loop to iterate through each feature in the join_layer. The join_l
 about 10 zip codes in it. Now, the following line is the meat of this function: 
 
 
-feature.setAttribute(feature.fieldNameIndex('PatCNT'), feature['Patient_Da'])
+	feature.setAttribute(feature.fieldNameIndex('PatCNT'), feature['Patient_Da'])
 
 
 This line is basically the equivalent of the GUI field calculator. Because we are in a 
@@ -80,7 +80,7 @@ can be much more interesting. For example, if you want to add 10 to the values o
 'Patient_Da' in the new 'PatCNT' field, your expression would look like this:
 
 
-feature.setAttribute(feature.fieldNameIndex('PatCNT'), feature['Patient_Da'] + 10 )
+	feature.setAttribute(feature.fieldNameIndex('PatCNT'), feature['Patient_Da'] + 10 )
 
 
 As you can see, you can use math and other fields to calculate the value in 'PatCNT' just 
@@ -88,7 +88,7 @@ as you would in the GUI field calculator. If I wanted to calculate this field us
 other attributes, it would look something like this:
 
 
-feature.setAttribute(feature.fieldNameIndex('PatCNT'),
+	feature.setAttribute(feature.fieldNameIndex('PatCNT'),
 					 feature['Patient_Da'] * feature['AWATER10'])
 
 
@@ -100,8 +100,9 @@ you are iterating over each feature in the attribute table.
 
 
 And there you have it. This is how to write a Field Calculator expression using python
-in QGIS 3.x. I wrote this because as I stated earlier, I really couldn't find an easy to
-use resource to do so and hopefully this will serve as a guide to get started. 
+in QGIS 3.x. As I stated earlier, I really couldn't find an easy to
+use resource to do so and hopefully this will serve as a guide to get started.
+You can write the same expressions you would using the GUI field calculator using math, other attributes, etc.
 
 
 
