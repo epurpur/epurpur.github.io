@@ -1,6 +1,10 @@
-I was recently working on a project in QGIS 3 with a member of University of Virginia Health's Oncology
+The biggest reason I write in this blog is to provide myself with good records and explanation of programming (or other) problems that trip me up. If I can document the issue while its still fresh in my mind, I will hopefully be able to refer back to it here without having to re-invent the wheel.
+
+I was recently working on a project with a member of University of Virginia Health's Oncology
 department. This person wanted to take a set of patient data (after identifying info had
-been removed) and represent the geographical distribution of those patients by US Zip Code. This workflow involved many steps, one of which was to apply a graduated color scheme to the results, shading them from light to dark based on # of patients in each zip code. I needed to write this in a script using Python for QGIS 3 (QGIS 3.4 in my case). This ultimately turned out to be pretty easy to do but not before some head scratching moments. I wrote this post to serve as an example for myself and hopefully to others. One major struggle was that many examples were from earlier versions of QGIS (QGIS 2.18 for example). Most of what I did find was from StackOverflow as well as the [PyQGIS Developer's Cookbook](https://docs.qgis.org/testing/en/docs/pyqgis_developer_cookbook/vector.html). Hopefully this serves as a guide for you to apply a graduated symbology to a layer in QGIS 3 using Python. In this example I'm going to use a subset of the data and walk through the steps. 
+been removed) and represent the geographical distribution of those patients by US Zip Code. This workflow involved many steps, one of which was to apply a graduated color scheme to the data, shading them from light to dark based on # of patients in each zip code. 
+
+I needed to write this in a script to automate this with Python in QGIS 3 (QGIS 3.4 in my case). This ultimately turned out to be pretty easy to do but not before I spent quite a few hours online trying to figure it out. One major struggle was that many examples were from earlier versions of QGIS (QGIS 2.18 for example) and the code doesn't always translate nicely. Most of what I did find was from various StackOverflow threads as well as the [PyQGIS Developer's Cookbook](https://docs.qgis.org/testing/en/docs/pyqgis_developer_cookbook/vector.html). Hopefully this serves as a guide for you to apply a graduated symbology to a layer in QGIS 3 using Python. In this example I'm going to use a subset of the data and walk through the steps. Download the sample data and you should be able to reproduce this with minimal changes to my code.
 
 [You can find the sample dataset for here](https://github.com/epurpur/PyQGIS-Scripts/blob/master/TestZipCodes.zip)
 
@@ -17,7 +21,7 @@ of number of patients by zip code. Here is the full code:
     join_layer = iface.addVectorLayer(uri, 'Patients by Zip Code', 'ogr')
     target_field = 'Patient_Da'
 
-    ﻿def apply_graduated_symbology():
+    def apply_graduated_symbology():
     """Creates Symbology for each value in range of values. 
         Values are # of patients per zip code.
         Hard codes min value, max value, symbol (color), and label for each range of 
