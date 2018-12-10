@@ -113,7 +113,9 @@ again:
     
     
 I finish with a print statement telling me this function ran and then execute the function
-outside the function block.
+outside the function block. In the end your output should look like this (I also added a basemap):
+
+![_config.yml]({{ site.baseurl }}/images/GraduatedSymbologyFinal.png)
 
 And there you have it. That is really all there is to it. As I previously stated, though this is pretty simple functionality I wrote this because I really couldn't find a great example resource to use so hopefully this serves as that for you.
 
