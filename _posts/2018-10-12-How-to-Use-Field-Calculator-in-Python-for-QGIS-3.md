@@ -1,16 +1,24 @@
 A really common task in GIS workflow is to make new fields (columns) in a layer's
 attribute table and then populate that field based on the values from other fields in
 the attribute table. You can write all sorts of expressions using a handy tool called 
-the Field Calculator. You can download the data I'll be using for this example here:
-https://github.com/epurpur/PyQGIS-Scripts/blob/master/TestZipCodes.zip
+the Field Calculator. You can use math, values from other attributes, etc. to write expressions to calculate these values.
+However, you can also do this programatically using Python. When I first attempted to tackle this problem using
+Python for QGIS 3, I couldn't find an example online that was simple enough for me to easily implement in my own code. 
+What I found was either for older versions of QGIS or too convoluted for me to wrap my brain around. Though I did eventually
+manage to wrap my head around this, hopefully this post will serve as an example for both you and I to avoid wasted
+time in the future. In this example I'm going to use a subset of the data and walk through the steps. Download the sample data and you should be able to reproduce this with minimal changes to my code.
+
+[You can find the sample dataset for this example here](https://github.com/epurpur/PyQGIS-Scripts/blob/master/TestZipCodes.zip)
+
 This layer is a handful of zip codes in and around Virginia.
 
-The GUI version of the field calculator looks like this:
+Just as a reminder, the GUI version of the field calculator looks like this:
 
-[Insert Image 1 here]
+![_config.yml]({{ site.baseurl }}/images/FieldCalcExample.png)
 
-However, I wanted to do this programmatically using python. 
-The full code looks like this:
+However, I wanted to do this programmatically using python. I'll start by showing you the full code and then break it down
+in pieces. 
+Here is what it looks like as a whole:
 
 
 	uri = '/Users/ep9k/Desktop/TestZipCodes/TestZipCodes.shp'
@@ -33,7 +41,7 @@ The full code looks like this:
 
 You can copy and paste this script directly into your QGIS python console and it should
 work, provided you change the uri to the actual path name of the shapefile on your own
-computer. Let's break this down. I actually do not need to import any libraries for this
+computer. Let's disect this further. I actually do not need to import any libraries for this
 script, so the first thing I do is set up the pathname to my layer and add that to the
 map. Then I specify my target_field which is a blank column in the attribute table of the
 TestZipCodes layer. The column is titled 'PatCNT' which is short for Patient Count. These
@@ -73,7 +81,8 @@ calculator. In this case, I am just replicating values from the 'Patient_Da' fie
 will give more examples shortly. If you were to write this expression in the field
 calculator, it would look like this: 
 
-[Insert image 2 here]
+
+![_config.yml]({{ site.baseurl }}/images/FieldCalcDuplicateColumn.png)
 
 So this expression is pretty boring currently, but the second argument of setAttribute()
 can be much more interesting. For example, if you want to add 10 to the values of
@@ -103,8 +112,3 @@ And there you have it. This is how to write a Field Calculator expression using 
 in QGIS 3.x. As I stated earlier, I really couldn't find an easy to
 use resource to do so and hopefully this will serve as a guide to get started.
 You can write the same expressions you would using the GUI field calculator using math, other attributes, etc.
-
-
-
-
-
