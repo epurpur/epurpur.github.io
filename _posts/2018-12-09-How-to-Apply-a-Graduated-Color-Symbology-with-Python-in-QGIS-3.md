@@ -6,7 +6,7 @@ been removed) and represent the geographical distribution of those patients by U
 
 I needed to write this in a script to automate this with Python in QGIS 3 (QGIS 3.4 in my case). This ultimately turned out to be pretty easy to do but not before I spent quite a few hours online trying to figure it out. One major struggle was that many examples were from earlier versions of QGIS (QGIS 2.18 for example) and the code doesn't always translate nicely. Most of what I did find was from various StackOverflow threads as well as the [PyQGIS Developer's Cookbook](https://docs.qgis.org/testing/en/docs/pyqgis_developer_cookbook/vector.html). Hopefully this serves as a guide for you to apply a graduated symbology to a layer in QGIS 3 using Python. In this example I'm going to use a subset of the data and walk through the steps. Download the sample data and you should be able to reproduce this with minimal changes to my code.
 
-[You can find the sample dataset for here](https://github.com/epurpur/PyQGIS-Scripts/blob/master/TestZipCodes.zip)
+[You can find the sample dataset for this example here](https://github.com/epurpur/PyQGIS-Scripts/blob/master/TestZipCodes.zip)
 
 This is a shapefile with a handful of zip codes in Virginia.
 
