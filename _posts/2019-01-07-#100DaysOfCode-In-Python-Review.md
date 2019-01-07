@@ -15,7 +15,7 @@ the others, but I will say I like it a lot.
 
 This is what it looks like, after logging in:
 
-[Screenshot pic of units here]
+![_config.yml]({{ site.baseurl }}/images/CourseOverview.png)
 
 The gist of it is they isolate a topic and spend 3 days on. Day 1 is a review of that topic. Day 2 is a simple project. Day 3
 is either building on Day 2 or sometime a separate project. Often, day 1 is comprised of quite a few videos explaining
@@ -31,7 +31,7 @@ any field need a mentor. I didn't have one myself and I consider the Talk Python
 Talk Python to me Podcast) as my mentors by proxy. Though I learned quite a bit through self study, I had no idea how the
 pros did things. For instance, they started by detailing their programming environment, setups, etc. Michael uses PyCharm:
 
-[Screenshot of Michael's environment here]
+![_config.yml]({{ site.baseurl }}/images/MichaelsEnvironment.png)
 
 I had been using Atom and Anaconda before, but that is just because that is what I was first introduced to. Now I use a
 suite of tools but at least have an idea of what they guys are using. 
@@ -41,7 +41,7 @@ thought of tackling them was daunting. Julien's JSON in Python module turned out
 created juices flowing and has turned into a monster of a side project for me that I know I'll keep going back to and
 adding functionality, refactoring, etc. for quite some time. 
 
-[Screenshot of Julien's JSON in Python module]
+![_config.yml]({{ site.baseurl }}/images/JSONinPython.png)
 
 Lastly, let's talk about my gripes about this program. My biggest complaint is really a strength in disguise and it is:
 Could someone really do all this in 100 days? I mean, do it in a meaningful way where they watch the videos, do the 
