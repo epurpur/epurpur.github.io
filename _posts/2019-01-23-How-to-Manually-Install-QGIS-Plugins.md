@@ -21,10 +21,10 @@ metadata and the Plugin Builder and voila! You have a QGIS plugin. Most of the p
 actually implementing this so I wanted to share my experience as well as some pitfalls you may want to look out for.
 
 First, plugins are managed, installed, uninstalled, etc. via the Plugin Manager, which looks like this.
-[Plugin Manager Image]
+![_config.yml]({{ site.baseurl }}/images/PluginManagerImage.png)
 
 When you go through the Plugin Builder steps, at the end you'll get a couple important pieces of information to help guide
 you further.
-[pyrcc5 warning]
-[Plugin Builder popup]
+![_config.yml]({{ site.baseurl }}/images/pyrcc5warning.png)
+![_config.yml]({{ site.baseurl }}/images/PluginBuilderPopup.png)
 
