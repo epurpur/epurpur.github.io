@@ -25,6 +25,26 @@ First, plugins are managed, installed, uninstalled, etc. via the Plugin Manager,
 
 When you go through the Plugin Builder steps, at the end you'll get a couple important pieces of information to help guide
 you further.
-![_config.yml]({{ site.baseurl }}/images/pyrcc5warning.png)
+
 ![_config.yml]({{ site.baseurl }}/images/PluginBuilderPopup.png)
+![_config.yml]({{ site.baseurl }}/images/pyrcc5warning.png)
+
+As the warning message says, you must manually compile the resources.qrc file in your plugin directory before installing 
+your plugin. Both the book and QGIS documentation ask you to open the terminal (Mac) or shell (Windows), navigate to where
+your new plugin folder has been created by the Plugin Builder, and run the following command:
+
+pyrcc5 -o resources_rc.py resources.qrc
+
+I honestly don't know why, but I do know this DOES NOT WORK.  What you really should run is:
+
+pyrcc5 -o resources.py resources.qrc
+
+Obviously, QGIS reads the plugins folder and looks for resources.py to read from. Not resources_rc.py. You might also look
+at this command and wonder, what is this pyrcc5 business? Here is the [pyrcc5 documentation](http://pyqt.sourceforge.net/Docs/PyQt5/resources.html), but in short, this reads resources.qrc and generates a python
+module that only needs to be imported by the application. 
+
+Write about edit metadata.txt next...
+
+
+
 
