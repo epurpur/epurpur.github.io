@@ -76,7 +76,7 @@ So now lets copy our new plugin's folder to the directory which holds the other 
 GUI 'finder' (or window's equivalent) now that you know how to navigate to this hidden directory via QGIS. Or you can use the
 terminal to copy your directory via a command like the following:
 
-cp -r /Users/ep9k/Desktop/Key-LogEcovaluator/test /Users/ep9k/Library/Application\ Support/QGIS/QGIS3/profiles/default/python/plugins
+cp -r /Users/ep9k/Desktop/testplugin /Users/ep9k/Library/Application\ Support/QGIS/QGIS3/profiles/default/python/plugins
 
 This is a little tricky, notice the 'Application Support' folder has a space in it so you have to account for that by adding
 a '\' character (as in Application\ Support).
