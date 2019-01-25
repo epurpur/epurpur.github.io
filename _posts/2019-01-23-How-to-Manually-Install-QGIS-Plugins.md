@@ -93,6 +93,9 @@ toolbar if you choose "View" > "Toolbars" >  "Plugins Toolbar".
 
 ![_config.yml]({{ site.baseurl }}/images/PluginToolbarScreenshot.png)
 
+You have not yet added any functionality to the plugin. If you open it, you have a blank dialog box. But you do at least have
+the plugin infrastructure.
+
 Congratulations! You've manually installed a QGIS plugin.
 
 
