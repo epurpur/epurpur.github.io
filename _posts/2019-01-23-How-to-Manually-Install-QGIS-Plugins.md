@@ -84,8 +84,14 @@ a 'backslash' character (as in Application\ Support).
 Check your QGIS plugins directory again to make sure your new plugin folder now exists there. You'll now have to re-start
 QGIS as it reads from the folder upon startup. After re-starting, navigate to your Plugin Manager, then 'Manage and Install
 Plugins'. Check the 'Installed' tab and you should see your plugin. The last thing you need to do is check the box to
-activate the plugin. Your plugin will now be available in the "plugins" tab either at the top of the screen or the "plugins"
+activate the plugin. See below (mine is called 'newplugin'):
+
+![_config.yml]({{ site.baseurl }}/images/NewPluginScreenshot.png)
+
+Your plugin will now be available in the "plugins" tab either at the top of the screen or the "plugins"
 toolbar if you choose "View" > "Toolbars" >  "Plugins Toolbar".
+
+![_config.yml]({{ site.baseurl }}/images/PluginToolbarScreenshot.png)
 
 Congratulations! You've manually installed a QGIS plugin.
 
