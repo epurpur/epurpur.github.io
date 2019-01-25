@@ -79,7 +79,7 @@ terminal to copy your directory via a command like the following:
 cp -r /Users/ep9k/Desktop/testplugin /Users/ep9k/Library/Application\ Support/QGIS/QGIS3/profiles/default/python/plugins
 
 This is a little tricky, notice the 'Application Support' folder has a space in it so you have to account for that by adding
-a '\' character (as in Application\ Support).
+a 'backslash' character (as in Application\ Support).
 
 Check your QGIS plugins directory again to make sure your new plugin folder now exists there. You'll now have to re-start
 QGIS as it reads from the folder upon startup. After re-starting, navigate to your Plugin Manager, then 'Manage and Install
