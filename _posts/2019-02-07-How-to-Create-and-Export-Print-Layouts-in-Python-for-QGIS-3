@@ -6,10 +6,12 @@ I greatly underestimated this process so don't take it lightly! Due to the near 
 have, there are a lot of small details I'll go into and show examples for. You can mix and match for your needs. I'm also
 going to dive into the documentation to show you how I referenced various class methods, attributes, etc.
 
-Let's start by initializing the print layout. 
+the attribute table of my join_layer, which is the sample data set:
 
 
-  Is this code?
-  
-  
-df
+    uri = '/Users/ep9k/Desktop/TestZipCodes/TestZipCodes.shp'
+    join_layer = iface.addVectorLayer(uri, 'Patients by Zip Code', 'ogr')
+    target_field = 'Patient_Da'
+
+
+Now, I created a function called apply_graduated_symbology() with no arguments. You can
