@@ -93,7 +93,7 @@ layout. Lastly, I moved the legend to where I want it to be on the map.
 This adds a legend with all layers in the map, including those that are turned off, additional tables, etc. Depending on
 your QGIS project, you might get a result like the following:
 
-    [Screenshot for really long generic legend]
+[Screenshot for really long generic legend]
     
 As you can see, the legend spills off the screen. In my QGIS project, I have a bunch of layers. Most of them are inactive
 and don't need to be in the legend. I really just want a few things. So I modified my script to just include the active 
