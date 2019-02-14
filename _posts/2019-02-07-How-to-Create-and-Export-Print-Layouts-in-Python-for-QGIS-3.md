@@ -10,6 +10,8 @@ I greatly underestimated this process so don't take it lightly! Due to the near 
 have, there are a lot of small details I'll go into and show examples for. You can mix and match for your needs. I'm also
 going to dive into the documentation to show you how I referenced various class methods, attributes, etc.
 
+I'll start by initializing a new print layout.
+
     project = QgsProject.instance()         
     manager = project.layoutManager()       
     layout = QgsPrintLayout(project)        
