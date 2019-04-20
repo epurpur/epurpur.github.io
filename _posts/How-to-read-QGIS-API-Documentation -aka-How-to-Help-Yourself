@@ -1,0 +1,31 @@
+(In Progress)
+
+This post is something I've been thinking about writing for quite a while and will be a long one. I was inspired to write it
+by my own trials and tribulations, which are still ongoing, while working with the QGIS API, trying to programmatically do
+stuff in QGIS instead of relying on available widgets and plugins. After spending many years working with ESRI/ArcGIS I have
+made the transition to QGIS almost completely and have become a big fan. But this does not mean the transition has been
+seemless. I have spent, and will continue to spend, many hours scouring the internet and especially Stack Overflow looking
+for answers to how to use various classes, methods, attributes, etc. Especially in the beginning, but still quite often, I
+feel like probably the dumbest person to have ever installed QGIS. I thought to myself many a time: "Am I an idiot or is this
+not as easy as it appears?". After getting in contact with more QGIS users it appears that I am not alone. A great number of
+QGIS users are struggling just as I am. One common thought I hear is: "I wish the documentation was a little more fleshed out,
+provided more examples, was easier to follow...". This quelled my fears somewhat, it appeared I was not alone.
+
+First, I would like to make it clear I am not taking shots at QGIS, the QGIS development team, or contributors. I am a big
+QGIS fan and really appreciate all the hard work they've done to make QGIS what it is today. Before I dive into the ins and 
+outs of how to help yourself I'd like to take a zen approach to the whole process and remind you, and myself, that QGIS is
+a work in progress and is not flawless. In my experience, it appears that sometimes nobody has all the answers about why stuff
+doesn't work, including said members of the development team. So take all this in stride and press onward.
+
+Honestly, I am a pretty novice python user and far from a QGIS API expert. Even still, I have figured out some tips and tricks 
+that I wish I had stumbled upon when I was learning the ropes and am attempting to synthesize this information, which I have
+scraped from many sources, all in one place. I will also include quite a few examples to illustrate different points and show
+how I attempt to attack the problem. Also, I'm going to break this into a series of blog posts to make them more digestible.
+
+Lets begin from the top. What is the QGIS API?
+[QGIS API Snippet from Gary Sherman's book]. 
+When you dive into the world of QGIS programming, you'll want to locate the documentation, which is available in several places.
+It took me a minute to figure out what is what. A really nice place to start is [The PyQGIS Developer's Cookbook](https://docs.qgis.org/testing/en/docs/pyqgis_developer_cookbook/).
+The Developer's Cookbook is both a tutorial and reference guide for the basics of PyQGIS programming. I reference it a lot.
+Next, you need to know where to find QGIS API documentation, you can find this in two forms. In Python and C++. Use them,
+bookmark them.
