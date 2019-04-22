@@ -1,4 +1,3 @@
-(In Progress)
 
 This post is something I've been thinking about writing for a while and will be several parts. I was inspired to write it
 by my own trials and tribulations, which are still ongoing, while working with the QGIS API, trying to programmatically do
@@ -147,7 +146,7 @@ you don't specify an input for this argument, the default value will be used. He
  
      help(provider)
 
-![_config.yml]({{ site.baseurl }}/images/helpprovider.png) .     #helpprovider screenshot
+![_config.yml]({{ site.baseurl }}/images/helpprovider.png)
 
 Now, I am nicely reminded that I am working with a QgsRasterDataProvider object. I can also quickly see the parent classes.
 I find the ability to call help docs for my variables enormously helpful.
