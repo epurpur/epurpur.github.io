@@ -1,6 +1,6 @@
 (In Progress)
 
-This post is something I've been thinking about writing for quite a while and will be a long one. I was inspired to write it
+This post is something I've been thinking about writing for a while and will be several parts. I was inspired to write it
 by my own trials and tribulations, which are still ongoing, while working with the QGIS API, trying to programmatically do
 stuff in QGIS instead of relying on available widgets and plugins. After spending many years working with ESRI/ArcGIS I have
 made the transition to QGIS almost completely and have become a big fan. But this does not mean the transition has been
