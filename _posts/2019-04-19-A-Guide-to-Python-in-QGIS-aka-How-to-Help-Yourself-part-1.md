@@ -139,7 +139,7 @@ Let's step back once more. If you are like me, you probably frequently get lost 
  
      help(layer.dataProvider())
  
- or call your variable itself.
+ or call the variable itself.
  
      help(provider)
 
