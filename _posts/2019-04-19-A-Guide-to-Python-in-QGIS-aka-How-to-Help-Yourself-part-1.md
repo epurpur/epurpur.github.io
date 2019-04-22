@@ -32,7 +32,7 @@ bookmark them. Both versions of the documentation reference the same classes, bu
 never written a single line of C++ code, but I find the most helpful part of the C++ documentation to be the inheritance 
 diagrams. Here, you can visually see which classes are parents and children of others and I find this very helpful. Example:
 
-![_config.yml]({{ site.baseurl }}/images/PrintLayoutTab.png) .     #screenshot of C++ inheritance diagram
+![_config.yml]({{ site.baseurl }}/images/C++inheritance.png) . 
 
 As seen above, there is a lot going on here. I chose QgsLayoutObject to show this class has several child classes. One of those
 (QgsLayoutItem) has many children of its own. It also has parent classes (QObject is one of them). I'll touch on class
@@ -42,7 +42,7 @@ For nearly everything else, I reference the Python Documentation. I find it more
 a generic class for example and point out the features available. As an inexperienced user it took me some time to orient
 myself to the documentation. I also highlighted where the parent class and base classes of the parent class are included.
 
-![_config.yml]({{ site.baseurl }}/images/PrintLayoutTab.png)      #image of Python documentation screenshot here
+![_config.yml]({{ site.baseurl }}/images/QgsLayoutObjectPython.png)
 
 Next for a given class you'll find all everything else associated with that class. I'm going to specifically detail the class
 methods and attributes. Class methods are basically just functions associated with a particular class. Attributes are simply
@@ -68,7 +68,7 @@ in QGIS. Let's illustrate the previous example a bit more. Long story short, the
 example is an attribute of class QgsRasterBandStats. In the console I can quickly see which attributes are available to me like
 so: 
 
-![_config.yml]({{ site.baseurl }}/images/PrintLayoutTab.png) .     #screenshot of QgsRasterBandStats attributes
+![_config.yml]({{ site.baseurl }}/images/QgsRasterBandStatsattributes.png)
 
 Notice I left my line of code unfinished. The QGIS console auto-populated the possibilities for me. Attributes will always be
 listed first, followed by methods. Other attributes available to me are max, min, mean, etc. 
@@ -83,14 +83,14 @@ QgsRasterInterface class. Here is a quick code example:
     
 I'll walk through each of the three methods I've used here. First, I created a layer object using the QgisInterface class and
 the activeLayer() method. You might wonder why I used iface.activeLayer() instead of QgisInterface.activeLayer? Honestly, I don't
-know. But through examples and experience it seems iface is shorthand for QgisInterface. It is just one of the quirks of the
+know. But through examples and experience, iface is shorthand for QgisInterface. It is just one of the quirks of the
 program. Anyway, in the QgisInterface documentation page you'll see the entry for the activeLayer() method:
 
-![_config.yml]({{ site.baseurl }}/images/PrintLayoutTab.png) .     #iface.activeLayer() method
+![_config.yml]({{ site.baseurl }}/images/ifaceActiveLayer.png)
 
 I've highlighted the arrow showing when you call this method, it returns a QgsMapLayer object. I can further demonstrate this:
 
-![_config.yml]({{ site.baseurl }}/images/PrintLayoutTab.png) .     #QgsMapLayerObject screenshot
+![_config.yml]({{ site.baseurl }}/images/QgsMapLayerObject.png)
 
 My active map layer is a raster layer, so I have a QgsRasterLayer object. The next attribute I called in the script is 
 QgsMapLayer.dataProvider(). Using the same process I created an object called provider. Then called the .dataProvider() method
@@ -98,7 +98,7 @@ on my layer object which returns a QgsRasterDataProvider object. Remember, layer
 The third method is .initHistogram(). Here is where things get more interesting. Now that I have a QgsRasterDataProvider object
 called provider. I find a method initHistogram(). Here is the entry for initHistogram() in the QgsRasterDataProvider docs:
 
-![_config.yml]({{ site.baseurl }}/images/PrintLayoutTab.png) .     #initHistogram blank screenshot
+![_config.yml]({{ site.baseurl }}/images/initHistogramblank.png)
 
 Looks pretty blank to me. I chose this to make it clear that QGIS documentation is an ongoing and imperfect process. Perhaps it
 will be filled in by the time you read this. How am I supposed to know what this method does or how to use it. There are several
@@ -107,7 +107,7 @@ classes lower on the food chain inherit methods from their parents. Luckily for 
 QgsRasterInterface class, which also has an initHistogram() method with more descriptive information. Here is a screenshot from
 QgsRasterInterface:
 
-![_config.yml]({{ site.baseurl }}/images/PrintLayoutTab.png) .     #QgsRasterInterface initHistogram screenshot
+![_config.yml]({{ site.baseurl }}/images/QgsRasterInterfaceinitHistogram.png)
 
 There is a lot more going on here. As you can see, initHistogram() has many more arguments available. Some are required, some
 are not. The first argument of most (maybe all?) class methods will be "self". Because most objects are single instances of
@@ -131,7 +131,7 @@ you don't specify an input for this argument, the default value will be used. He
  This saves me quite a bit of time and explicitly states what you should be entering, instead of flipping back and forth between
  the documentation and your code. Here is what it looks like in real time:
  
- ![_config.yml]({{ site.baseurl }}/images/PrintLayoutTab.png) .     #initHistogram console screenshot
+ ![_config.yml]({{ site.baseurl }}/images/initHistogramConsole.png)
  
  
  histogramVector doesn't work!
@@ -147,7 +147,7 @@ you don't specify an input for this argument, the default value will be used. He
  
      help(provider)
 
-![_config.yml]({{ site.baseurl }}/images/PrintLayoutTab.png) .     #helpprovider screenshot
+![_config.yml]({{ site.baseurl }}/images/helpprovider.png) .     #helpprovider screenshot
 
 Now, I am nicely reminded that I am working with a QgsRasterDataProvider object. I can also quickly see the parent classes.
 I find the ability to call help docs for my variables enormously helpful.
