@@ -132,24 +132,25 @@ to use the initHistogram() method:
  
  ![_config.yml]({{ site.baseurl }}/images/initHistogramConsole.png) 
  
-Let's step back now. If you are like me, you probably frequently get lost while coding. In the short code example above, you
+Let's step back once more. If you are like me, you probably frequently get lost while coding. In the short code example above, you
  might think: "Wait, what kind of object is provider, what am I working with here?". Fortunately, you can always ask for
  help. You can ask for help docs explicitly for a class, you also ask for help on your variables and other objects. If you are
  trying to remember what layer.dataProvider() actually is, just do this:
  
      help(layer.dataProvider())
  
- or call your variable explicitly.
+ or call your variable itself.
  
      help(provider)
 
 ![_config.yml]({{ site.baseurl }}/images/helpprovider.png)
 
-Now, I am nicely reminded that I am working with a QgsRasterDataProvider object. I can also quickly see the parent classes.
-I find the ability to call help docs for my variables enormously helpful.
+The help docs are long so I only included the first line or two. Now, I am nicely reminded that I am working with a 
+QgsRasterDataProvider object. I can also quickly see the parent classes. I find the ability to call help docs for my 
+variables enormously helpful.
 
-I am going to end here for this post. These are the basics of where to find help and how to interpret the documentation. In
-the following posts in this series, I will dive further into the workflow of how to do various tasks in QGIS and how to orient
-yourself while coding. Stay tuned!
+I will end this post here. These are the basics of where to find help and how to interpret the documentation. In
+the following posts in this series, I will dive further into the workflow of how to do various tasks in QGIS and how to 
+orient yourself while coding. Stay tuned for more!
 
 
