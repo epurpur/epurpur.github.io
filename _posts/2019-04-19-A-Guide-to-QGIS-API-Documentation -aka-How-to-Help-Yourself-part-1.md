@@ -22,10 +22,10 @@ that I wish I had stumbled upon when I was learning the ropes and am attempting 
 scraped from many sources, all in one place. I will also include quite a few examples to illustrate different points and show
 how I attempt to attack the problem. Also, I'm going to break this into a series of blog posts to make them more digestible.
 
-Lets begin from the top. What is the QGIS API?
-[QGIS API Snippet from Gary Sherman's book]. 
-When you dive into the world of QGIS programming, you'll want to locate the documentation, which is available in several places.
-It took me a minute to figure out what is what. A really nice place to start is [The PyQGIS Developer's Cookbook](https://docs.qgis.org/testing/en/docs/pyqgis_developer_cookbook/).
+Lets begin from the top. What is the QGIS API? In the most basic terms, an API allows programs to communicate with one another.
+In this case, QGIS and python are communicating with eachother. When you dive into the world of QGIS programming, you'll first
+want to locate the documentation, which is available in several places. It took me a minute to figure out what is what. A 
+really nice place to start is [The PyQGIS Developer's Cookbook](https://docs.qgis.org/testing/en/docs/pyqgis_developer_cookbook/).
 This is both a tutorial and reference guide for the basics of PyQGIS programming. I reference it a lot.
 Next, you need to know where to find QGIS API documentation, you can find this in two forms. In Python and C++. Use them,
 bookmark them. Both versions of the documentation reference the same classes, but look slightly different. To be honest, I've
@@ -109,5 +109,51 @@ QgsRasterInterface:
 
 ![_config.yml]({{ site.baseurl }}/images/PrintLayoutTab.png) .     #QgsRasterInterface initHistogram screenshot
 
-There is a lot more going on here. 
+There is a lot more going on here. As you can see, initHistogram() has many more arguments available. Some are required, some
+are not. The first argument of most (maybe all?) class methods will be "self". Because most objects are single instances of
+a class, "self" will be the first argument. If you are unclear about this, I highly recommend [Corey Schafer's python
+Object-Oriented programming videos](https://www.youtube.com/watch?v=ZDa-Z5JzLYM&vl=en). The 2nd argument is a histogram, followed
+by what QGIS expects will be the object type you input for this argument, which is a QgsRasterHistogram. Meaning, first you 
+must create a QGIS raster histogram. More on this below. Lastly, you see several of these arguments have default values so if
+you don't specify an input for this argument, the default value will be used. Here is an example of how to use this method:
+
+    layer = iface.activeLayer()
+    provider = layer.dataProvider()
+    histogram = QgsRasterHistogram()                     #create an empty QgsRasterHistogram object
+    provider.initHistogram(histogram,1,100)              #use the initHistogram() method on the QgsRasterDataProvider object
     
+ Specifically looking at the .initHistogram() line, you can see I included 3 arguments. Really, 4 arguments, but "self" is 
+ implicitly the first argument. Walking through the documentation for the initHistogram() arguments, the first I included is
+ my histogram, which is a QgsRasterHistogram object. Next is bandNo. This is the raster band number I'm working with. My raster
+ layer only has one band. But your's might have multiple bands. In the docs, see that bandNo expects an integer as the input.
+ Then I have 100 as the value for my binCount argument. The rest of the arguments I left blank and accepted the default value.
+ A nice feature of the QGIS console/editor is that it auto-populates the arguments of various classes and methods as you are typing.
+ This saves me quite a bit of time and explicitly states what you should be entering, instead of flipping back and forth between
+ the documentation and your code. Here is what it looks like in real time:
+ 
+ ![_config.yml]({{ site.baseurl }}/images/PrintLayoutTab.png) .     #initHistogram console screenshot
+ 
+ 
+ histogramVector doesn't work!
+ 
+ Let's step back here. If you are like me, you probably frequently get lost while coding. In the short code example above, you
+ might think: "Wait, what kind of object is provider, what am I even working with here?". Fortunately, you can always ask for
+ help. You can ask for help docs explicitly for a class, you also ask for help on your variables and other objects. If you are
+ trying to remember what layer.dataProvider() actually is, just do this:
+ 
+     help(layer.dataProvider())
+ 
+ or call your variable explicitly.
+ 
+     help(provider)
+
+![_config.yml]({{ site.baseurl }}/images/PrintLayoutTab.png) .     #helpprovider screenshot
+
+Now, I am nicely reminded that I am working with a QgsRasterDataProvider object. I can also quickly see the parent classes.
+I find the ability to call help docs for my variables enormously helpful.
+
+I am going to end here for this post. These are the basics of where to find help and how to interpret the documentation. In
+the following posts in this series, I will dive further into the workflow of how to do various tasks in QGIS and how to orient
+yourself while coding. Stay tuned!
+
+
