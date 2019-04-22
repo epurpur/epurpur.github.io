@@ -3,21 +3,21 @@ This post is something I've been thinking about writing for a while and will be 
 by my own trials and tribulations, which are still ongoing, while working with the QGIS API, trying to programmatically do
 stuff in QGIS instead of relying on available widgets and plugins. After spending many years working with ESRI/ArcGIS I have
 made the transition to QGIS almost completely and have become a big fan. But this does not mean the transition has been
-seemless. I have spent, and will continue to spend, many hours scouring the internet and especially Stack Overflow looking
-for answers to how to use various classes, methods, attributes, etc. Especially in the beginning, but still quite often, I
+seemless. I have spent, and will probably continue to spend, many hours scouring the internet and especially Stack Overflow looking
+for answers of how to use various classes, methods, attributes, etc. Especially in the beginning, but still quite often, I
 feel like probably the dumbest person to have ever installed QGIS. I thought to myself many a time: "Am I an idiot or is this
 not as easy as it appears?". After getting in contact with more QGIS users it appears that I am not alone. A great number of
-QGIS users are struggling just as I am. One common thought I hear is: "I wish the documentation was a little more fleshed out,
+people are struggling just as I am. One common thought I hear is: "I wish the documentation was a little more fleshed out,
 provided more examples, was easier to follow...". This quelled my fears somewhat, it appeared I was not alone.
 
 First, I would like to make it clear I am not taking shots at QGIS, the QGIS development team, or contributors. I am a big
 QGIS fan and really appreciate all the hard work they've done to make QGIS what it is today. Before I dive into the ins and 
 outs of how to help yourself I'd like to take a zen approach to the whole process and remind you, and myself, that QGIS is
 a work in progress and is not flawless. In my experience, it appears that sometimes nobody has all the answers about why stuff
-doesn't work, including said members of the development team. So take all this in stride and press onward.
+doesn't work, including said members of the development team. So take all this in stride as you press onward.
 
 Honestly, I am a pretty novice python user and far from a QGIS API expert. Even still, I have figured out some tips and tricks 
-that I wish I had stumbled upon when I was learning the ropes and am attempting to synthesize this information, which I have
+that I wish I had known when I was learning the ropes and am attempting to synthesize this information, which I have
 scraped from many sources, all in one place. I will also include quite a few examples to illustrate different points and show
 how I attempt to attack the problem. Also, I'm going to break this into a series of blog posts to make them more digestible.
 
@@ -35,7 +35,7 @@ diagrams. Here, you can visually see which classes are parents and children of o
 
 As seen above, there is a lot going on here. I chose QgsLayoutObject to show this class has several child classes. One of those
 (QgsLayoutItem) has many children of its own. It also has parent classes (QObject is one of them). I'll touch on class
-inheritance shortly, but basically any child class inherits methods from its parents.
+inheritance shortly, but any child class inherits methods from its parents.
 
 For nearly everything else, I reference the Python Documentation. I find it more user friendly and easier to use. Let's take
 a generic class for example and point out the features available. As an inexperienced user it took me some time to orient
@@ -43,7 +43,7 @@ myself to the documentation. I also highlighted where the parent class and base 
 
 ![_config.yml]({{ site.baseurl }}/images/QgsLayoutObjectPython.png)
 
-Next for a given class you'll find all everything else associated with that class. I'm going to specifically detail the class
+Next, for a given class you'll find everything else associated with that class. I'm going to specifically detail the class
 methods and attributes. Class methods are basically just functions associated with a particular class. Attributes are simply
 variables that belong to a class. QgsLayoutObject has many methods and attributes and you'll see them listed accordingly in
 the documentation. The Python documentation is nice because everything is clickable and you can zoom around the page, clicking
@@ -64,8 +64,7 @@ some other functions to get the details about the pixel values in the raster lay
 see the minimum pixel value in this raster layer. If you are coding in the QGIS Python Console, or its associated editor, you
 can get some help as you go. Though the QGIS python console is not the best full-feature editor, I find it useful while coding
 in QGIS. Let's illustrate the previous example a bit more. Long story short, the minimumValue attribute I used in the previous
-example is an attribute of class QgsRasterBandStats. In the console I can quickly see which attributes are available to me like
-so: 
+example is an attribute of class QgsRasterBandStats. In the console I can quickly see which attributes are available to me like so: 
 
 ![_config.yml]({{ site.baseurl }}/images/QgsRasterBandStatsattributes.png)
 
@@ -81,7 +80,7 @@ QgsRasterInterface class. Here is a quick code example:
     provider.initHistogram(QgsRasterHistogram(),1,100)
     
 I'll walk through each of the three methods I've used here. First, I created a layer object using the QgisInterface class and
-the activeLayer() method. You might wonder why I used iface.activeLayer() instead of QgisInterface.activeLayer? Honestly, I don't
+the activeLayer() method. You might wonder why I used iface.activeLayer() instead of QgisInterface.activeLayer()? Honestly, I don't
 know. But through examples and experience, iface is shorthand for QgisInterface. It is just one of the quirks of the
 program. Anyway, in the QgisInterface documentation page you'll see the entry for the activeLayer() method:
 
@@ -99,8 +98,8 @@ called provider. I find a method initHistogram(). Here is the entry for initHist
 
 ![_config.yml]({{ site.baseurl }}/images/initHistogramblank.png)
 
-Looks pretty blank to me. I chose this to make it clear that QGIS documentation is an ongoing and imperfect process. Perhaps it
-will be filled in by the time you read this. How am I supposed to know what this method does or how to use it. There are several
+Looks pretty empty to me. I chose this to demonstrate that QGIS documentation is an ongoing and imperfect process. Perhaps it
+will be filled in by the time you read this. How am I supposed to know what this method does or how to use it? There are several
 ways. I briefly touched on the concept of class inheritance. As I showed earlier, classes have parent and child classes. Child
 classes lower on the food chain inherit methods from their parents. Luckily for us, QgsRasterDataProvider is a child of the 
 QgsRasterInterface class, which also has an initHistogram() method with more descriptive information. Here is a screenshot from
@@ -108,35 +107,33 @@ QgsRasterInterface:
 
 ![_config.yml]({{ site.baseurl }}/images/QgsRasterInterfaceinitHistogram.png)
 
-There is a lot more going on here. As you can see, initHistogram() has many more arguments available. Some are required, some
-are not. The first argument of most (maybe all?) class methods will be "self". Because most objects are single instances of
+There is a lot more going on here. As you can see, initHistogram() takes many more arguments. Some are required, some
+are not. The first argument of most (maybe all?) QGIS class methods will be "self". Because most objects are single instances of
 a class, "self" will be the first argument. If you are unclear about this, I highly recommend [Corey Schafer's python
 Object-Oriented programming videos](https://www.youtube.com/watch?v=ZDa-Z5JzLYM&vl=en). The 2nd argument is a histogram, followed
 by what QGIS expects will be the object type you input for this argument, which is a QgsRasterHistogram. Meaning, first you 
-must create a QGIS raster histogram. More on this below. Lastly, you see several of these arguments have default values so if
-you don't specify an input for this argument, the default value will be used. Here is an example of how to use this method:
+must create a QGIS raster histogram. I give an example in the code below. Lastly, you see several of these arguments have 
+default values so if you don't specify an input for this argument, the default value will be used. Here is an example of how 
+to use the initHistogram() method:
 
     layer = iface.activeLayer()
     provider = layer.dataProvider()
     histogram = QgsRasterHistogram()                     #create an empty QgsRasterHistogram object
     provider.initHistogram(histogram,1,100)              #use the initHistogram() method on the QgsRasterDataProvider object
     
- Specifically looking at the .initHistogram() line, you can see I included 3 arguments. Really, 4 arguments, but "self" is 
+ Specifically looking at the .initHistogram() line, you can see I included 3 arguments. Really, 4 arguments, "self" is 
  implicitly the first argument. Walking through the documentation for the initHistogram() arguments, the first I included is
  my histogram, which is a QgsRasterHistogram object. Next is bandNo. This is the raster band number I'm working with. My raster
  layer only has one band. But your's might have multiple bands. In the docs, see that bandNo expects an integer as the input.
  Then I have 100 as the value for my binCount argument. The rest of the arguments I left blank and accepted the default value.
  A nice feature of the QGIS console/editor is that it auto-populates the arguments of various classes and methods as you are typing.
  This saves me quite a bit of time and explicitly states what you should be entering, instead of flipping back and forth between
- the documentation and your code. Here is what it looks like in real time:
+ the documentation and your code. Here is what it looks like in action:
  
- ![_config.yml]({{ site.baseurl }}/images/initHistogramConsole.png)
+ ![_config.yml]({{ site.baseurl }}/images/initHistogramConsole.png) 
  
- 
- histogramVector doesn't work!
- 
- Let's step back here. If you are like me, you probably frequently get lost while coding. In the short code example above, you
- might think: "Wait, what kind of object is provider, what am I even working with here?". Fortunately, you can always ask for
+Let's step back now. If you are like me, you probably frequently get lost while coding. In the short code example above, you
+ might think: "Wait, what kind of object is provider, what am I working with here?". Fortunately, you can always ask for
  help. You can ask for help docs explicitly for a class, you also ask for help on your variables and other objects. If you are
  trying to remember what layer.dataProvider() actually is, just do this:
  
