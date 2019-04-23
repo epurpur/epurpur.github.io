@@ -8,7 +8,7 @@ program in Python and I am loving its ease of use, versatility, and I'm excited 
 I am specifically interested in combining Python's powers with Geographic Information Systems, mostly QGIS. I really
 appreciate the open-source spirit of the QGIS user community and look forward to becoming increasingly involved.
 
-Recently I've been working on adding some existing functionality to existing QGIS plugins. You can see our latest work
+Recently I've been working on building some QGIS plugins. You can see our latest work
 at: http://www.keylogeconomics.com/ecovaluator.html
 The EcoValuator plugin was originally produced by Key-Log Economics and it's development was funded by a grant from the
 National Fish and Wildlife Foundation. The QGIS EcoValuator provides a simple means of estimating the dollar value of 
