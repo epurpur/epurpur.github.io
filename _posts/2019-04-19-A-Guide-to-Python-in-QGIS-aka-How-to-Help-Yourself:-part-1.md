@@ -22,11 +22,11 @@ scraped from many sources, all in one place. I will also include quite a few exa
 how I attempt to attack the problem. Also, I'm going to break this into a series of blog posts to make them more digestible.
 
 Lets begin from the top. What is the QGIS API? In the most basic terms, an API allows programs to communicate with one another.
-In this case, QGIS and python are communicating with eachother. When you dive into the world of QGIS programming, you'll first
+In this case we are communicating with QGIS using python. When you dive into the world of QGIS programming, you'll first
 want to locate the documentation, which is available in several places. It took me a minute to figure out what is what. A 
 really nice place to start is [The PyQGIS Developer's Cookbook](https://docs.qgis.org/testing/en/docs/pyqgis_developer_cookbook/).
 This is both a tutorial and reference guide for the basics of PyQGIS programming. I reference it a lot.
-Next, you need to know where to find QGIS API documentation, you can find this in two forms. In Python and C++. Use them,
+Next, you need to know where to find QGIS API documentation, you can find this in two forms. In [Python](https://qgis.org/pyqgis/master/) and [C++](https://qgis.org/api/modules.html). Use them,
 bookmark them. Both versions of the documentation reference the same classes, but look slightly different. To be honest, I've
 never written a single line of C++ code, but I find the most helpful part of the C++ documentation to be the inheritance 
 diagrams. Here, you can visually see which classes are parents and children of others and I find this very helpful. Example:
@@ -37,7 +37,7 @@ As seen above, there is a lot going on here. I chose QgsLayoutObject to show thi
 (QgsLayoutItem) has many children of its own. It also has parent classes (QObject is one of them). I'll touch on class
 inheritance shortly, but any child class inherits methods from its parents.
 
-For nearly everything else, I reference the Python Documentation. I find it more user friendly and easier to use. Let's take
+For nearly everything else, I reference the Python Documentation. I find it easier to use. Let's take
 a generic class for example and point out the features available. As an inexperienced user it took me some time to orient
 myself to the documentation. I also highlighted where the parent class and base classes of the parent class are included.
 
@@ -57,7 +57,7 @@ at the last line as a demonstration of what an attribute looks like.
     provider = layer.dataProvider()
     extent = layer.extent()
     stats = provider.bandStatistics(1, QgsRasterBandStats.All)
-    print(stats.minimumValue)                   #minimumValue is the attribute here
+    print(stats.minimumValue)    # <<<<<<< minimumValue is the attribute here
     
 What I've done in this short script is taken the active layer in the project, which is a raster layer in this case, and called
 some other functions to get the details about the pixel values in the raster layer. Finally I use the minimumValue attribute to
