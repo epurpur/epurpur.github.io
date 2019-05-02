@@ -6,11 +6,8 @@ focused on basics and background information such as:
   -tips and tricks of getting more help
   -using the docs vs help in the QGIS python console
   
-I will be applying these tactics in this post and following posts, showing examples of real world QGIS tools and workflows. I
-was inspired to write these posts through my own frustrations in orienting myself to using Python with QGIS. While I think 
-the QGIS development team has done a great job in providing an open source alternative to ESRI/ArcGIS, naturally there will be
-gaps in documentation and so on as QGIS is a community effort, primarily relying on volunteers. I'm writing these posts for 
-several reasons. First, I write them for myself as a way to attempt to better understand the solutions I figure out and
+I will be applying these tactics in this post and following posts, showing examples of real world QGIS tools and workflows. I was inspired to write these posts through my own frustrations in orienting myself to using Python with QGIS. While I think 
+the QGIS development team has done a great job in providing an open source alternative to ESRI/ArcGIS, naturally there will be gaps in documentation and so on as QGIS is a community effort, primarily relying on volunteers. I'm writing these posts for several reasons. First, I write them for myself as a way to attempt to better understand the solutions I figure out and
 capture my frame of mind while I'm still current in the project. I assume I'll have similar issues in the future so hopefully
 I can do my future self a favor and document the process as I go. Second, I think that if I am having these problems, other
 QGIS users are too. Maybe I can save someone else some effort? Initially I thought no one would ever read my posts except me
@@ -29,13 +26,11 @@ How to make a plan of attack or How to address a PyQGIS issue. My workflow usual
 Now lets take an example. A while back I asked a question on StackOverflow. [I was working with a Raster layer and I wanted to
 access the pixel values in that layer].(https://gis.stackexchange.com/questions/311047/pyqgis-raster-band-stats-access-pixel-values-of-raster-layer)
 Here is the code I started from when I asked the question:
+    
     layer = iface.activeLayer()
     print("Active Layer: ", layer.name())
     provider = layer.dataProvider()
     extent = layer.extent()
-    stats = provider.bandStatistics(1, QgsRasterBandStats.All) 
-    print("min value =", stats.minimumValue)
-    print("max value =", stats.maximumValue)
 
 I know how to do this in QGIS using various widgets. For a given raster layer, right click and go to "properties" > 
 "symbology". Here, I can manually access the various pixel values in that raster layer. Here is a screenshot of what this
@@ -47,6 +42,7 @@ Before I begin, I find it helpful to ask myself: "What am I working with?". This
 attributes, and as I get more experienced, what PyQGIS classes I might be working with. There are many types of things I
 could be manipulating with python including layers, maps, databases, etc. In this case, the object I am working with is a
 layer in my map. I like to get as much help as I can with my objects so I will run this help tool in the console:
+    
     print(help(layer))                 #you can call help directly on variables you've created
     print(help(iface.activeLayer())    #you can call help this way too
 
@@ -54,6 +50,7 @@ In my project, I am working with a raster layer, which is an instance of the cla
 Looking at the documentation I can now see all the methods, attributes, etc. available for that layer, including parent
 classes and arguments needed if I use this class while coding. Next, I print the name of the layer (in the console), just
 to make sure things are working:
+    
     print("Active Layer: ", layer.name())
 
 You can see I have a variable "layer" and called the method .name(). If I look through the QgsRasterLayer documentation, you
@@ -78,8 +75,10 @@ don't know an effective way to sift through all this except through experience. 
 available via various base classes. If you know a better way, let me know!
 
 Anyway, the layer name is an aside. Back to the example. Here are the next two lines of code:
+    
     provider = layer.dataProvider()
     extent = layer.extent()
+
 QgsRasterLayer provides one of these methods, dataProvider(). But there is no information listed. How am I supposed to know
 what this method does? Here you see a limitation of an open-source software project like QGIS. It is not someone's job to do 
 make sure all the documentation is complete, like it is for someone at ESRI. Luckily, QgsMapLayer provides both this method
@@ -90,6 +89,27 @@ available.
 
 [Insert [dataProvider() image]
 
-The dataProvider method is particularly interesting because of what it returns, a QgsRasterDataProvider object, which I have
-highlighted in the image above.
+The dataProvider method is particularly interesting because of what it returns, a QgsDataProvider object, which I have
+highlighted in the image above. This will actually be a QgsRasterDataProvider object because I am working with a raster
+layer. In the code, you can now see I move on to working with the QgsRasterDataProvider object:
+    
+    stats = provider.bandStatistics(1, QgsRasterBandStats.All) 
+
+Let's keep in mind the original goal. I want to read the pixel values of cells in a raster layer, as I did in the properties
+> symbology tab of my raster layer. If you go to my [original StackOverflow thread](https://gis.stackexchange.com/questions/311047/pyqgis-raster-band-stats-access-pixel-values-of-raster-layer) I was lucky
+enough to receive several responses. Basically there are two trains of thought on this solution. But first, let's look at
+the bandStatistics() method I used above. Again, this method is inherited by QgsRasterDataProvider from its parent class,
+QgsRasterInterface. Let me show you another way to identify class inheritance, this time using the python documentation.
+The C++ inheritance diagrams are easier to understand, as they offer a nice visual, but below you can see I've identified
+the parent classes to QgsRasterInterface. 
+
+[Insert QgsRasterDataProvider image]
+
+You will notice I included 2 arguments in the bandStatistics method > (1, QgsRasterBandStats.All). The documentation for the
+bandStatistics method is helpful (lucky us!) and explicitly states what we need to include as arguments and what those 
+arguments should be:
+
+[Insert bandStatistics image]
+
+
 
