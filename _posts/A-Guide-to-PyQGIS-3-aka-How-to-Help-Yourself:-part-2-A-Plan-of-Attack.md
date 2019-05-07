@@ -23,14 +23,18 @@ How to make a plan of attack or How to address a PyQGIS issue. My workflow usual
   -The usual coding process of trying, failing, re-writing, trying again
   -If I am really stumped, ask a question on StackOverflow
   
-Now lets take an example. A while back I asked a question on StackOverflow. [I was working with a Raster layer and I wanted to
+Before we begin, the full code with various solutions is available at the bottom of the blog post, for your reference.  
+  
+Now lets use an example. A while back I asked a question on StackOverflow. [I was working with a Raster layer and I wanted to
 access the pixel values in that layer].(https://gis.stackexchange.com/questions/311047/pyqgis-raster-band-stats-access-pixel-values-of-raster-layer)
-Here is the code I started from when I asked the question:
+
+Here is the code I started with when I asked the question:
     
     layer = iface.activeLayer()
     print("Active Layer: ", layer.name())
     provider = layer.dataProvider()
     extent = layer.extent()
+    stats = provider.bandStatistics(1, QgsRasterBandStats.All)
 
 I know how to do this in QGIS using various widgets. For a given raster layer, right click and go to "properties" > 
 "symbology". Here, I can manually access the various pixel values in that raster layer. Here is a screenshot of what this
@@ -111,5 +115,20 @@ arguments should be:
 
 [Insert bandStatistics image]
 
+I only included two arguments, more are available. The first is the band number, for which QGIS expects an integer. My raster
+has only one band, so my input is 1. Next argument is stats, or statistics. The default argument here is
+QgsRasterBandStats.All. Now that I have a "stats" object, I can see some of its attributes like minimum value, maximum value, 
+standard deviation, range, mean and so on. Here is an example:
+
+    print(stats.minimumValue)
+    print(stats.maximumValue)
+    
+This is nice, but I want more granularity, similar to what is shown in the "symbology" screenshot above. I want to see the
+raster values and a count of those values. The first solution I explored used the block() method from the
+QgsRasterDataProvider class. Here is the documentation screenshot:
+
+[Insert blockMethod image]
+
+This returns a QgsRasterBlock object. 
 
 
