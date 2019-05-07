@@ -44,7 +44,7 @@ I know how to do this in QGIS using various widgets. For a given raster layer, r
 "symbology". Here, I can manually access the various pixel values in that raster layer. Here is a screenshot of what this
 looks like via the "symbology" tab:
 
-[insert symbology photo here]
+![_config.yml]({{ site.baseurl }}/images/symbology.png)
 
 When I start, I find it helpful to ask myself: "What object am I working with?". This clues me in to what methods,
 attributes, and as I get more experienced, what PyQGIS classes I might be working with. There are many types of things I
@@ -67,11 +67,11 @@ inheritance diagram from the C++ documentation, I see that QgsVectorLayer inheri
 means, there are many methods and attributes a QgsVectorLayer object could use in addition to the ones listed in it's own
 documentation:
 
-[Insert QgsRasterLayer Inheritannce Diagram image]
+![_config.yml]({{ site.baseurl }}/images/QgsRasterLayerInheritanceDiagram.png)
 
 QgsRasterLayer isn't a very complex inheritance diagram. Let's look at QgsVectorLayer for the sake of this example. Many attributes and methods are shared between QgsVectorLayer and QgsRasterLayer.
 
-[Insert QgsVectorLayer Inheritance Diagram image]
+![_config.yml]({{ site.baseurl }}/images/QgsVectorLayerInheritanceDiagram.png)
 
 These classes share many attributes and methods because they inherit from a common parent class, [QgsMapLayer](https://qgis.org/pyqgis/master/core/QgsMapLayer.html)
 You can see, I used the name() method on my active layer, but where did this come from? Because class inheritance allows a
@@ -93,9 +93,9 @@ make sure all the documentation is complete, like it is for someone at ESRI. Luc
 and extent() with more information. Lesson: it is worth taking a look at the base class(es) to see what information is
 available.
 
-[Insert extent() image]
+![_config.yml]({{ site.baseurl }}/images/extentMethod.png)
 
-[Insert [dataProvider() image]
+![_config.yml]({{ site.baseurl }}/images/dataProviderMethod.png)
 
 The dataProvider method is particularly interesting because of what it returns, a QgsDataProvider object, which I have
 highlighted in the image above. This will actually be a QgsRasterDataProvider object because I am working with a raster
@@ -111,13 +111,13 @@ QgsRasterInterface. Let me show you another way to identify class inheritance, t
 The C++ inheritance diagrams are easier to understand, as they offer a nice visual, but below you can see I've identified
 the parent classes to QgsRasterInterface. 
 
-[Insert QgsRasterDataProvider image]
+![_config.yml]({{ site.baseurl }}/images/QgsRasterDataProvider.png)
 
 You will notice I included 2 arguments in the bandStatistics method > (1, QgsRasterBandStats.All). The documentation for the
 bandStatistics method is helpful (lucky us!) and explicitly states what we need to include as arguments and what those 
 arguments should be:
 
-[Insert bandStatistics image]
+![_config.yml]({{ site.baseurl }}/images/bandStatistics.png)
 
 I only included two arguments, more are available. The first is the band number, for which QGIS expects an integer. My raster
 has only one band, so my input is 1. Next argument is stats, or statistics. The default argument here is
@@ -136,7 +136,7 @@ QgsRasterDataProvider class. Here is the code and documentation screenshot:
     
     block = provider.block(1, extent, columns, rows)
 
-[Insert blockMethod image]
+![_config.yml]({{ site.baseurl }}/images/blockMethod.png)
 
 This returns a QgsRasterBlock object. Now I can do some regular python magic to parse this QgsRasterBlock object, iterating
 over it just like I would with other lists and things. First, I will do this very verbosely to make it clear how I'm looping
@@ -173,7 +173,7 @@ be using a different raster layer. Lastly, I clipped just a tiny part of my rast
 as you can see I only have 9 pixels. If you are iterating through a raster with many thousands (or millions) of pixels, this
 process might take a while!
 
-[Insert block screenshot image]
+![_config.yml]({{ site.baseurl }}/images/blockScreenshot.png)
 
 I included very verbose nested for loops and print statements. Why not use list comprehensions and shorten things up? Well,
 I am not a very good python coder and it was easier for me to make sense of what was going on. I am sure there are better 
