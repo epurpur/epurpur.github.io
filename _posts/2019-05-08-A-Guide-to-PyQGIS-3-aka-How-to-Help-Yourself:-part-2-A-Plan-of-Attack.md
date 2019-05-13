@@ -1,6 +1,7 @@
 This is the 2nd part of a multi-part blog post that I'll continue to write about: How to help yourself using Python for QGIS 3
 (PyQGIS 3). [In the first part](https://epurpur.github.io/A-Guide-to-Python-in-QGIS-aka-How-to-Help-Yourself-part-1/) I 
 focused on basics and background information such as:
+
   -Where to find documentation
   -How to interpret the documentation
   -tips and tricks of getting more help
@@ -16,8 +17,16 @@ hopefully I can do my future self a favor and document the process as I go. Seco
 problems, other QGIS users are too. Maybe I can save someone else some effort? Initially I thought no one would ever read my 
 posts except me but I have actually received so feedback from the community. So I know I am not alone.
 
+Before we begin, two different code solutions are available at the end of this blog post, for your reference. 
+
+Now lets use an example which I will really pull apart and examine each step of the process. This is meant to be a workflow
+example. The subject matter is secondary, but you'll see in detail how I write my code by navigating the documentation and 
+using other tools to my advantage (like the QGIS console) and unfortunately this is a bit tedious. Even if you are not 
+interested in the functionality, I hope you'll be able to take away my process and adapt it to your own preferences.
+
 In this post I am going to build on little bits of code I used in my previous blog post. This subject of this post will be:
 How to make a plan of attack or How to address a PyQGIS issue. My workflow usually goes something like this:
+
   -Identify problem
   -Google it (ie: "Raster Calculator PyQGIS")
       -This usually leads me to a StackOverflow thread or QGIS documentation
@@ -26,9 +35,9 @@ How to make a plan of attack or How to address a PyQGIS issue. My workflow usual
   -The usual coding process of trying, failing, re-writing, trying again
   -If I am really stumped, ask a question on StackOverflow
   
-Before we begin, two different code solutions are available at the end of this blog post, for your reference.  
 
-Now lets use an example which I will really pull apart and examine each step of the process. A while back I asked a question 
+Now for my process...
+A while back I asked a question 
 on StackOverflow. [I was working with a Raster layer and I wanted to
 access the pixel values in that layer](https://gis.stackexchange.com/questions/311047/pyqgis-raster-band-stats-access-pixel-values-of-raster-layer).
 
@@ -63,17 +72,16 @@ to make sure things are working:
 
 You can see I have a variable "layer" and called the method .name(). If I look through the QgsRasterLayer documentation, you
 will not see the method .name() listed. So where did this come from? The answer is class inheritance. Looking at the class
-inheritance diagram from the C++ documentation, I see that QgsVectorLayer inherits from a bunch of different classes. This
-means, there are many methods and attributes a QgsVectorLayer object could use in addition to the ones listed in it's own
-documentation:
+inheritance diagram from the C++ documentation, I see that QgsRasterLayer's inheritance diagram is not very complex, so let's
+also look at QgsVectorLayer's inheritance diagram as it is similar.
 
 ![_config.yml]({{ site.baseurl }}/images/QgsRasterLayerInheritanceDiagram.png)
 
-QgsRasterLayer isn't a very complex inheritance diagram. Let's look at QgsVectorLayer for the sake of this example. Many attributes and methods are shared between QgsVectorLayer and QgsRasterLayer.
+As you can see, QgsVectorLayer has a lot more action:
 
 ![_config.yml]({{ site.baseurl }}/images/QgsVectorLayerInheritanceDiagram.png)
 
-These classes share many attributes and methods because they inherit from a common parent class, [QgsMapLayer](https://qgis.org/pyqgis/master/core/QgsMapLayer.html)
+QgsRasterLayer and QgsVectorLayer share many attributes and methods because they inherit from a common parent class, [QgsMapLayer](https://qgis.org/pyqgis/master/core/QgsMapLayer.html)
 You can see, I used the name() method on my active layer, but where did this come from? Because class inheritance allows a
 class to inherit from its parent classes, there are potentially many more methods and attributes available to each class than
 are listed in the documentation. I found the name() method inside the parent class, [QgsMapLayer](https://qgis.org/pyqgis/master/core/QgsMapLayer.html#qgis.core.QgsMapLayer.name).
@@ -101,6 +109,7 @@ The dataProvider method is particularly interesting because of what it returns, 
 highlighted in the image above. This will actually be a QgsRasterDataProvider object because I am working with a raster
 layer. In the code, you can now see I move on to working with the QgsRasterDataProvider object:
     
+    #think of provider.bandStatistics() as shorthand for QgsRasterDataProvider.bandStatistics()
     stats = provider.bandStatistics(1, QgsRasterBandStats.All) 
 
 Let's keep in mind the original goal. I want to read the pixel values of cells in a raster layer, as I did in the properties
@@ -139,8 +148,8 @@ QgsRasterDataProvider class. Here is the code and documentation screenshot:
 ![_config.yml]({{ site.baseurl }}/images/blockMethod.png)
 
 This returns a QgsRasterBlock object. Now I can do some regular python magic to parse this QgsRasterBlock object, iterating
-over it just like I would with other lists and things. First, I will do this very verbosely to make it clear how I'm looping
-through these objects.
+over it just like I would with other lists and things. I will do this very verbosely to make it clear how I'm looping
+through these objects instead of combining them in list comprehensions.
 
     values = []
     for row in range(rows):
@@ -176,14 +185,14 @@ process might take a while!
 ![_config.yml]({{ site.baseurl }}/images/blockScreenshot.png)
 
 I included very verbose nested for loops and print statements. Why not use list comprehensions and shorten things up? Well,
-I am not a very good python coder and it was easier for me to make sense of what was going on. I am sure there are better 
-ways to attack this problem and I encourange you to find a quicker solution.
+you probably should but I wanted to make things as clear as possible for the sake of this example. This seems like a lot of
+work to me though. I had to do many nested loops, not to mention the processing time this could take if you have a large
+raster file. For that reason alone I see the utility of this method somewhat limited. Isn't there a better solution?
 
-But, this seems like a lot of work. Isn't there a better solution? It turns out there is an initHistogram() method available
-in the QgsRasterDataProvider class. We can initialize the histogram, which returns a QgsRasterHistogram object. The docs
-for QgsRasterHistogram are rather sparse. There are a few attributes available, but no information about them. It seems the
-histogramVector attribute is the most likely to return something resembling what is available in the properties>symbology
-tab. Here is the code for the previous few steps:
+It turns out there is an initHistogram() method available in the QgsRasterDataProvider class. We can initialize the 
+histogram, which returns a QgsRasterHistogram object. The docs for QgsRasterHistogram are rather sparse. There are a few 
+attributes available, but no information about them. It seems the histogramVector attribute is the most likely to return 
+something resembling what is available in the properties>symbology tab. Here is the code for the previous few steps:
 
     provider.initHistogram(QgsRasterHistogram(),1,100)     #arguments are QgsRasterHistogram, band number, bin number
     histogram = provider.histogram(1)
@@ -250,3 +259,6 @@ your needs.
     print(histogram.minimum)               #this attribute works
     histogram.histogramVector              #this attribute crashes the program
     
+Keep in mind, this is meant to be a process oriented problem solving approach. The content is not necessarily the important
+part here, it is the step-by-step examination of how to combine all these classes, methods, attributes, documentation, etc
+into a solution. 
