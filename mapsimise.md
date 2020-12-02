@@ -27,7 +27,7 @@ The billing page shows your subscription and payment information.
 ![_config.yml]({{ site.baseurl }}/images/MapsimiseImages/billingpage.png)
 
 
-
+---
 
 Filtering Data
 
@@ -56,8 +56,7 @@ Any record with data in the 2+ Removed field is excluded.
 
 <em> BRE Pricing by Zone Filter </em>: Shows records which meet the following criteria. Property Type is either "Home" or "Home / Potentially Not Residential" (because we can't always distinguish in some counties). Then each zone (1a through 6a) and the price filter for each respective zone. Any record with data in the 2+ removed field is excluded. **This filter took a long time to create. Please don't delete it!**. You can modify this by changing any of the prices for each zone. 
 
-
-
+---
 
 Geography Filters
 
@@ -67,7 +66,35 @@ This is not the official name used by Mapsimise. I made it up. A "geographical f
 
 <em> KML Shape Filters </em> I have pre-loaded many other shapes into the map. All the shapes have been uploaded as KML files and are readily available. First, at the top of the screen find "KMLs". The current options are: Zone Shapes (ex: Zone1a), Watauga River, New River, High Elevations. The high elevations filter are all areas in the high county above 4000ft.
 
-To use one of these as a data filter, from the "KMLs" list, click on one and it will pop up on the right side of the screen
+To use one of these as a data filter, from the "KMLs" list, click on one and it will pop up on the right side of the screen.
+![_config.yml]({{ site.baseurl }}/images/MapsimiseImages/Zone1a.png)
+
+You can toggle the shape to be visible or not with the eye buttons. ![_config.yml]({{ site.baseurl }}/images/MapsimiseImages/eye.png)
+
+The polygon shape is used to make the object on the map a filter. ![_config.yml]({{ site.baseurl }}/images/MapsimiseImages/polygon.png)
+
+You will see the shape come to life on the map. Your results will now be filtered to show just those inside the object. The filter will become an option in the filters bar, along with the river filters and others. These can all be renamed if you like.
+
+---
+
+Manual/Custom Filters
+You can also make your own filters as you go.
+
+<em> Shape Filters </em> At the top of the screen under "shape filters", you can draw various shapes. Options include circle, rectangle, polygon, polyline, marker. These are pretty self explanatory. Draw these on the map and they will shop up with the rest of the filters.
+
+<em> Address Radius Filter </em> I imagine you'll be doing this regularly. This is for the scenario that you have an address for a just sold/just listed property and want to get the nearest 200 or so properties around it. In my opinion, this is the easiest way to do it. 
+In the menu bar of the map, click the magnifying glass
+![_config.yml]({{ site.baseurl }}/images/MapsimiseImages/mapmenu.png)
+
+This search feature is the Google Maps search feature embedded into Mapsimise, and works the same way. You can type in a full address, place name, cross street, etc. and the map matches this as well as possible. In my opinion this is much easier and faster than filtering through the dataset for specific data. 
+
+Type in a place name as shown and you'll zoom into that place:
+![_config.yml]({{ site.baseurl }}/images/MapsimiseImages/googlemapssearch.png)
+
+There should be a point on the map at that address. Click the point and you'll get the following popup:
+![_config.yml]({{ site.baseurl }}/images/MapsimiseImages/popupmarker.png)
+
+Click the three bars in the top right and "create filter". Your filter will pop up in with the others and will be titled that place name by default. You can change the size, etc. just as you can with any other filter.
 
 
 
