@@ -27,12 +27,16 @@ The billing page shows your subscription and payment information.
 ![_config.yml]({{ site.baseurl }}/images/MapsimiseImages/billingpage.png)
 
 
+
+
 Filtering Data
+
 There are several ways of filtering data.
 
 Data Filters
+
 Data filters are placed on the data via the attribute table of the dataset. For example: View all 
-records which have the property type of "Home".
+records which have the property type of "Home". You can and probably should double up filters. For example, you can use a data filter and a geographical filter on the data. 
 
 To select a data filter click on the three horizontal bars button next to the 'master list' layer in the bottom of the main map screen. ![_config.yml]({{ site.baseurl }}/images/MapsimiseImages/toolbar.png) 
 
@@ -52,10 +56,18 @@ Any record with data in the 2+ Removed field is excluded.
 
 <em> BRE Pricing by Zone Filter </em>: Shows records which meet the following criteria. Property Type is either "Home" or "Home / Potentially Not Residential" (because we can't always distinguish in some counties). Then each zone (1a through 6a) and the price filter for each respective zone. Any record with data in the 2+ removed field is excluded. **This filter took a long time to create. Please don't delete it!**. You can modify this by changing any of the prices for each zone. 
 
-Geography Filters
-This is not the official name used by Mapsimise. I made it up. A "geographical filter" is any shape on the map used to filter the master list. There are many ways to make geographical filters. These filters are located (by default) about 2/3 of the way down the page, right above the layers and the data table.
 
-<em> River Filters </em>
+
+
+Geography Filters
+
+This is not the official name used by Mapsimise. I made it up. A "geographical filter" is any shape on the map used to filter the master list. There are many ways to make geographical filters. These filters are located (by default) about 2/3 of the way down the page, right above the layers and the data table. You can also double up filters. For example you can (and probably should) use a data filter and then a geographical filter on the data. 
+
+<em> River Filters </em> I have created 3 pre-existing river filters. These are meant to approximate the "homes on the river" list. It is not quite the same as the parcels that exactly touch the boundary of the rivers as in QGIS. The three river filters are the Watauga River Filter, South Fork New River Filter, North Fork New River Filter. Their buffers can be manipulated as you like. 
+
+<em> KML Shape Filters </em> I have pre-loaded many other shapes into the map. All the shapes have been uploaded as KML files and are readily available. First, at the top of the screen find "KMLs". The current options are: Zone Shapes (ex: Zone1a), Watauga River, New River, High Elevations. The high elevations filter are all areas in the high county above 4000ft.
+
+To use one of these as a data filter, from the "KMLs" list, click on one and it will pop up on the right side of the screen
 
 
 
