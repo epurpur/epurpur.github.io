@@ -2,16 +2,6 @@
 
 MAPSIMISE USER MANUAL
 
-
-Navigation Menu:
-[Overview](#Overview)
-[Salesforce Connector](#Salesforce-Connector)
-[Billing](#Billing)
-[Filtering Data](#Filtering-Data)
-[Data Filters](#Data-Filters)
-[Geography Filters](#Geography-Filters)
-[Manual or Custom Filters](#Manual-or-Custom-Filters)
-
 # Overview
 
 Mapsimise Organization Homepage: [https://boonerealestate.useast.mapsimise.com](https://boonerealestate.useast.mapsimise.com/)
