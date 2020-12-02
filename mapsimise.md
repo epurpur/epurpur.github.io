@@ -20,6 +20,8 @@ This is where we connect to Salesforce. **Interfering with this or deleting/reco
 remove all the data filters I have created. No touchy!**
 ![_config.yml]({{ site.baseurl }}/images/MapsimiseImages/salesforceconnector.png)
 
+Current Salesforce Security token (as of 12/2/20) ; HWoBWA8bqCUfe3NJrJxuoO2o
+
 ## Billing
 The billing page shows your subscription and payment information.
 ![_config.yml]({{ site.baseurl }}/images/MapsimiseImages/billingpage.png)
