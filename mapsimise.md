@@ -1,4 +1,6 @@
-BOONE REAL ESTATE  (##BRE LOGO IMAGE##)
+![_config.yml]({{ site.baseurl }}/images/MapsimiseImages/brelogo.png)
+
+BOONE REAL ESTATE
 
 MAPSIMISE USER MANUAL
 
