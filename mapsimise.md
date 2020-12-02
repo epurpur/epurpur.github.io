@@ -4,7 +4,15 @@ MAPSIMISE USER MANUAL
 
 
 Navigation Menu:
+[Overview](#Overview)
+[Salesforce Connector](#Salesforce-Connector)
+[Billing](#Billing)
+[Filtering Data](#Filtering-Data)
+[Data Filters](#Data-Filters)
+[Geography Filters](#Geography-Filters)
+[Manual or Custom Filters](#Manual-or-Custom-Filters)
 
+## Overview
 
 Mapsimise Organization Homepage: [https://boonerealestate.useast.mapsimise.com](https://boonerealestate.useast.mapsimise.com/)
 
@@ -17,23 +25,23 @@ The landing page looks like this:
 We only have one map with 1 view. The views are basically just different ways of looking at the same
 data but for our sake I didn't feel like different views were necessary. 
 
-Salesforce Connector
+## Salesforce Connector
 This is where we connect to Salesforce. **Interfering with this or deleting/reconnecting will 
 remove all the data filters I have created. No touchy!**
 ![_config.yml]({{ site.baseurl }}/images/MapsimiseImages/salesforceconnector.png)
 
-Billing
+## Billing
 The billing page shows your subscription and payment information.
 ![_config.yml]({{ site.baseurl }}/images/MapsimiseImages/billingpage.png)
 
 
 ---
 
-Filtering Data
+## Filtering Data
 
 There are several ways of filtering data.
 
-Data Filters
+## Data Filters
 
 Data filters are placed on the data via the attribute table of the dataset. For example: View all 
 records which have the property type of "Home". You can and probably should double up filters. For example, you can use a data filter and a geographical filter on the data. 
@@ -58,7 +66,7 @@ Any record with data in the 2+ Removed field is excluded.
 
 ---
 
-Geography Filters
+## Geography Filters
 
 This is not the official name used by Mapsimise. I made it up. A "geographical filter" is any shape on the map used to filter the master list. There are many ways to make geographical filters. These filters are located (by default) about 2/3 of the way down the page, right above the layers and the data table. You can also double up filters. For example you can (and probably should) use a data filter and then a geographical filter on the data. 
 
@@ -77,7 +85,7 @@ You will see the shape come to life on the map. Your results will now be filtere
 
 ---
 
-Manual/Custom Filters
+## Manual or Custom Filters
 You can also make your own filters as you go.
 
 <em> Shape Filters </em> At the top of the screen under "shape filters", you can draw various shapes. Options include circle, rectangle, polygon, polyline, marker. These are pretty self explanatory. Draw these on the map and they will shop up with the rest of the filters.
