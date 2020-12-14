@@ -29,6 +29,22 @@ The billing page shows your subscription and payment information.
 
 ---
 
+## Available Layers
+
+In the bottom left of the page, you'll see several layers which you can toggle on and off. These are actually all the same data, which is the DirectMail object 
+from Salesforce. The difference between them is they each have a different data filter applied to them. In order to make Mapsimise more straight-forward to use, I've named each layer the same as its corresponding data filter name. The data filter can be changed but this would defeat the purpose of the current setup. 
+
+<em> Condos Layer </em>: Shows records with property type of "condo", "townhome", or "condo/townhome". 
+Any record with data in the 2+ Removed field is excluded. Any record with a Date Mailed in the last x amount of days is excluded.
+
+<em> Vacant Land Layer </em>: Shows all records with property type of "Vacant Land" and gisacres of <= 10 and parval of >= $100,000. Also shows records with property type of "Vacant Land" and gisacres of >= 10 and parval of >= $200,000. Any record with data in the 2+ removed field is excluded. Any record with a Date Mailed in the last x amount of days is excluded.
+
+<em> Homes Layer </em>: Shows records which meet the following criteria. Property Type is either "Home" or "Home / Potentially Not Residential" (because we can't always distinguish in some counties). Then each zone (1a through 6a) and the price filter for each respective zone. Any record with data in the 2+ removed field is excluded. Any record with a Date Mailed in the last x amount of days is excluded. **This filter took a long time to create. Please don't delete it!**. You can modify this by changing any of the prices for each zone. 
+
+<em> Combined Layer </em>: Think of this as a combination filter. Shows all records which meet the criteria of any of the condo, vacant land, or Homes filter. Any record with data in the 2+ removed field is excluded. Any record with a Date Mailed in the last x amount of days is excluded.
+
+
+
 ## Filtering Data
 
 There are several ways of filtering data.
@@ -36,13 +52,13 @@ There are several ways of filtering data.
 ## Data Filters
 
 Data filters are placed on the data via the attribute table of the dataset. For example: View all 
-records which have the property type of "Home". You can and probably should double up filters. For example, you can use a data filter and a geographical filter on the data. 
+records which have the property type of "Home". You can use two filters at once. For example, you can use a data filter and a geographical filter on the data. 
 
 To select a data filter click on the three horizontal bars button next to the 'master list' layer in the bottom of the main map screen. ![_config.yml]({{ site.baseurl }}/images/MapsimiseImages/toolbar.png) 
 
 Click 'data filter' and you'll see a dropdown bar which allows you to select different options. **You 
 should always view the data with a data filter**. Otherwise, it'll take a while for the program to load 
-230,000 records. There are three custom data filters, which I created that you should not delete, along with a few others. Here are the data filter options:
+230,000 records. There are four custom data filters, which I created that you should not delete, along with a few others. Here are the data filter options:
 
 <em> No Data Filter </em>: Just as it says, no filtering of the dataset. This views all records.
 
@@ -50,17 +66,20 @@ should always view the data with a data filter**. Otherwise, it'll take a while 
 because we are always tweaking the way we look at the data.
 
 <em> Condo Filter </em>: Shows records with property type of "condo", "townhome", or "condo/townhome". 
-Any record with data in the 2+ Removed field is excluded.
+Any record with data in the 2+ Removed field is excluded. Any record with a Date Mailed in the last x amount of days is excluded.
 
-<em> Vacant Land Filter </em>: Shows all records with property type of "Vacant Land" and gisacres of <= 10 and parval of >= $100,000. Also shows records with property type of "Vacant Land" and gisacres of >= 10 and parval of >= $200,000. Any record with data in the 2+ removed field is excluded.
+<em> Vacant Land Filter </em>: Shows all records with property type of "Vacant Land" and gisacres of <= 10 and parval of >= $100,000. Also shows records with property type of "Vacant Land" and gisacres of >= 10 and parval of >= $200,000. Any record with data in the 2+ removed field is excluded. Any record with a Date Mailed in the last x amount of days is excluded.
 
-<em> BRE Pricing by Zone Filter </em>: Shows records which meet the following criteria. Property Type is either "Home" or "Home / Potentially Not Residential" (because we can't always distinguish in some counties). Then each zone (1a through 6a) and the price filter for each respective zone. Any record with data in the 2+ removed field is excluded. **This filter took a long time to create. Please don't delete it!**. You can modify this by changing any of the prices for each zone. 
+<em> BRE Pricing by Zone Filter </em>: Shows records which meet the following criteria. Property Type is either "Home" or "Home / Potentially Not Residential" (because we can't always distinguish in some counties). Then each zone (1a through 6a) and the price filter for each respective zone. Any record with data in the 2+ removed field is excluded. Any record with a Date Mailed in the last x amount of days is excluded. **This filter took a long time to create. Please don't delete it!**. You can modify this by changing any of the prices for each zone. 
+
+<em> Combined Filter </em>: Think of this as a combination filter. Shows all records which meet the criteria of any of the condo, vacant land, or Homes filter. Any record with data in the 2+ removed field is excluded. Any record with a Date Mailed in the last x amount of days is excluded.
+
 
 ---
 
 ## Geography Filters
 
-This is not the official name used by Mapsimise. I made it up. A "geographical filter" is any shape on the map used to filter the master list. There are many ways to make geographical filters. These filters are located (by default) about 2/3 of the way down the page, right above the layers and the data table. You can also double up filters. For example you can (and probably should) use a data filter and then a geographical filter on the data. 
+This is not the official name used by Mapsimise, but a name I made up. A "geographical filter" is any shape on the map used to filter the master list. There are many ways to make geographical filters. These filters are located (by default) about 2/3 of the way down the page, right above the layers and the data table. You can also double up filters. For example you can (and probably should) use a data filter and then a geographical filter on the data. 
 
 <em> River Filters </em> I have created 3 pre-existing river filters. These are meant to approximate the "homes on the river" list. It is not quite the same as the parcels that exactly touch the boundary of the rivers as in QGIS. The three river filters are the Watauga River Filter, South Fork New River Filter, North Fork New River Filter. Their buffers can be manipulated as you like. 
 
